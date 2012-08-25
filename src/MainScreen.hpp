@@ -37,7 +37,7 @@ public:
 	~MainScreen();
 	void createScreen();
 	bb::cascades::Page* loadImage();
-	bb::cascades::Page* createSecondPage();
+	bb::cascades::Page* balancePage();
 	void setMenu();
 	bb::cascades::Page* getRoot();
 	void addItems();
