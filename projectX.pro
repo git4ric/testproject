@@ -2,6 +2,7 @@ TEMPLATE = app
 TARGET = projectX
 
 CONFIG += qt warn_on debug_and_release cascades
+LIBS += -lnfc -lnfc_bps -lbps -lbbsystem 
 
 INCLUDEPATH += ../src
 SOURCES += ../src/*.cpp
