@@ -13,32 +13,30 @@ MainScreen::MainScreen(){
 	TabbedPane *root = new TabbedPane;
 	root->setShowTabsOnActionBar(true);
 
-	Tab *firstTab = Tab::create().title("Test 1");
+	Tab *firstTab = Tab::create().title("Home Page");
 	 Page *firstTabContent = loadImage();
 	 firstTab->setContent(firstTabContent);
 
-	 Tab *secondTab = Tab::create()
-	                  .title("Tab 2");
-	 Page *secondTabContent = new Page;
-	 secondTabContent->setContent(Label::create("This is tab 2."));
+	 Tab *secondTab = Tab::create().title("Balance");
+	 Page *secondTabContent = balancePage();
 	 secondTab->setContent(secondTabContent);
 
 	 Tab *thirdTab = Tab::create()
-	                  .title("Tab 3");
+	                  .title("Add money");
 	 Page *thirdTabContent = new Page;
-	 thirdTabContent->setContent(Label::create("This is tab 3."));
+	 thirdTabContent->setContent(Label::create("Add money"));
 	 thirdTab->setContent(thirdTabContent);
 
 	 Tab *FourthTab = Tab::create()
-	                  .title("Tab 4");
+	                  .title("Setup new card");
 	 Page *FourthTabContent = new Page;
-	 FourthTabContent->setContent(Label::create("This is tab 4."));
+	 FourthTabContent->setContent(Label::create("Setup new card"));
 	 FourthTab->setContent(FourthTabContent);
 
 	 Tab *fifthTab = Tab::create()
-	 	                  .title("Tab 5");
+	 	                  .title("Settings");
 	 	 Page *fifthTabContent = new Page;
-	 	fifthTabContent->setContent(Label::create("This is tab 5. It should overflow..."));
+	 	fifthTabContent->setContent(Label::create("Settings"));
 	 	fifthTab->setContent(fifthTabContent);
 	 root->add(firstTab);
 	 root->add(secondTab);
@@ -98,23 +96,25 @@ void MainScreen::setMenu(){
 	_container->add(contextContainer);
 }
 
-Page* MainScreen::createSecondPage()
+Page* MainScreen::balancePage()
 {
     Page *page = new Page();
 
-    ActionItem* backAction = ActionItem::create();
-    connect(backAction, SIGNAL(triggered()), mNavPane, SLOT(pop()));
-    page->setPaneProperties(NavigationPaneProperties::create().backButton(backAction));
+ //   ActionItem* backAction = ActionItem::create();
+ //   connect(backAction, SIGNAL(triggered()), mNavPane, SLOT(pop()));
+ //   page->setPaneProperties(NavigationPaneProperties::create().backButton(backAction));
 
-    TitleBar* titleBar = TitleBar::create().visibility(ChromeVisibility::Visible).title("Test Page");
+    TitleBar* titleBar = TitleBar::create().visibility(ChromeVisibility::Visible).title("Available Balance");
     page->setTitleBar(titleBar);
 
 
     Container *content = new Container();
+    ImageView *backgroundImage = ImageView::create(
+   	            "assets//background.png").layoutProperties(
+   	            DockLayoutProperties::create().vertical(VerticalAlignment::Fill).horizontal(
+   	                    HorizontalAlignment::Fill));
+    content->add(backgroundImage);
 
-    ImagePaint paint(QUrl("asset://background"), RepeatPattern::XY);
-    content->setBackground(paint);
-    content->setLayout(DockLayout::create());
 
     // Adding the ContentContainer.
     page->setContent(content);
